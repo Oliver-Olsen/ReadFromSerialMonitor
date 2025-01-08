@@ -1,3 +1,5 @@
+//Code is made for the Arduino Mega 2560
+
 #include <Arduino.h>
 
 /*  6a. char is a character. This is not only used to represent a letter
