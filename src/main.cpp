@@ -9,12 +9,14 @@
 *   
 */
 
+// Assigns pins
 #define PIN_A 6
 #define PIN_B 5
 #define PIN_C 4
 #define PIN_D 3
 #define PIN_E 2
 
+//Adds pins to an array in order to simplify setup
 int pins[5] = {
   PIN_A, 
   PIN_B, 
@@ -25,64 +27,51 @@ int pins[5] = {
 
 
 void setup() {
-for (int i = 0; i < 5; i++) {
-  pinMode(pins[i], OUTPUT); 
-  digitalWrite(pins[i], LOW); 
-}
+  Serial.begin(9600); 
 
-
-mychar = (char)(val+'A'-1);
-Serial.print(mychar);
-
+  //Runs through the setup for all five LED pins
+  for (int i = 0; i < 5; i++) {
+    pinMode(pins[i], OUTPUT); //Defines pin type
+    digitalWrite(pins[i], LOW); //Ensures the LED is off at startup
+  }
 }
 
 void loop() {
   if (Serial.available() > 0) {
-    char msg = Serial.read(); 
+    char msg = Serial.read(); //If serial is available, assigns value to a char
 
-    switch (msg)
+    /*
+    * A switch to check the value of the char. 
+    * If the char is one of the first five letters of the alphabet, turns on the corresponding LED. 
+    * If not one of the first five letters, turns off all the LEDs. 
+    */
+    switch (msg) 
     {
     case 'a':
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(pins[i], LOW); 
-      }
       digitalWrite(PIN_A, HIGH); 
       break;
 
     case 'b':
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(pins[i], LOW); 
-      }
       digitalWrite(PIN_B, HIGH); 
       break;
     
     case 'c':
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(pins[i], LOW); 
-      }
       digitalWrite(PIN_C, HIGH); 
       break;
 
     case 'd':
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(pins[i], LOW); 
-      }
       digitalWrite(PIN_D, HIGH); 
       break;
 
     case 'e':
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(pins[i], LOW); 
-      }
       digitalWrite(PIN_E, HIGH); 
       break;
 
     default:
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 5; i++) { //Uses the array of pins to turn them all low
         digitalWrite(pins[i], LOW); 
       }
       break;
     }
   }
 }
-
